@@ -23,13 +23,13 @@ function AddTask() {
 
     }, [taskName]);
     const setEditName = useCallback((value, key) => {
-        let UpdateTask = taskList.map((task, idex) => key === idex ? { ...task, name: value } : task);
+        let UpdateTask = taskList.map((task, index) => key === index ? { ...task, name: value } : task);
         setTaskList(UpdateTask);
     }, [taskList]);
 
     const editTask = useCallback((key, btnName) => {
-        let updateTaskList = taskList.map((task, idex) => {
-            if (idex === key) {
+        let updateTaskList = taskList.map((task, index) => {
+            if (index === key) {
                 if (btnName === 'Edit') {
                     return { ...task, disabled: false, btnName: 'Save' }
 
