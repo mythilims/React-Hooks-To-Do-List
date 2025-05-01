@@ -23,36 +23,42 @@ function AddTask() {
 
     }, [taskName]);
     const setEditName = useCallback((value, key) => {
-        let UpdateTask = [...taskList];
-        UpdateTask[key].name = value;
-        setTaskList(UpdateTask);
-    }, [taskList])
-    const editTask = useCallback((key, btnName) => {
-        let UpdateTask = [...taskList];
-        if (btnName === 'Edit') {
-            UpdateTask[key].disabled = false;
-            UpdateTask[key].btnName = 'Save';
-        } else if (btnName === 'Save') {
-            UpdateTask[key].btnName = 'Edit';
-            UpdateTask[key].disabled = true;
-        } else {
-            UpdateTask[key].btnName = 'Completed';
-            UpdateTask[key].disabled = true;
-        }
+        let UpdateTask = taskList.map((task, idex) => key === idex ? { ...task, name: value } : task);
         setTaskList(UpdateTask);
     }, [taskList]);
 
+    const editTask = useCallback((key, btnName) => {
+        let updateTaskList = taskList.map((task, idex) => {
+            if (idex === key) {
+                if (btnName === 'Edit') {
+                    return { ...task, disabled: false, btnName: 'Save' }
+
+                } else if (btnName === 'Save') {
+                    return { ...task, disabled: true, btnName: 'Edit' }
+
+                } else {
+                    return { ...task, disabled: true, btnName: 'Completed' }
+
+                }
+            } else {
+                return task
+            }
+        })
+
+
+        setTaskList(updateTaskList);
+    }, [taskList]);
+
     const deleteTask = useCallback((key) => {
-        let UpdateTask = [...taskList];
-        UpdateTask.splice(key, 1);
+        let UpdateTask =taskList.filter((_,keys) => keys!==key  );
         setTaskList(UpdateTask);
-    }, []);
+    }, [taskList]);
     return (
         <>
             <p>To-Do List</p>
 
             <Row>
-                <TotalNoTask taskList={taskList}/>
+                <TotalNoTask taskList={taskList} />
             </Row>
             <Row>
                 <Col md="5">
