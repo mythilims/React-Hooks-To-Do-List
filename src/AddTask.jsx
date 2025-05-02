@@ -1,8 +1,10 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback,useContext } from 'react'
 import { Button, Col, Input, Row } from 'reactstrap';
 import ToDoList from "./ToDoList";
 import TotalNoTask from './TotalNoTask';
+import {Details} from './App';
 function AddTask() {
+    const  {title} =useContext(Details);
     const [taskName, setTaskName] = useState('');
     const [taskList, setTaskList] = useState([]);
     const addTask = useCallback(() => {
@@ -55,7 +57,7 @@ function AddTask() {
     }, [taskList]);
     return (
         <>
-            <p>To-Do List</p>
+            <p>{title}</p>
 
             <Row>
                 <TotalNoTask taskList={taskList} />
@@ -68,7 +70,7 @@ function AddTask() {
                 </Col>
 
                 <Col md="3">
-                    <Button onClick={() => addTask()} color='primary'>Add Task</Button>
+                    <Button onClick={addTask} color='primary'>Add Task</Button>
                 </Col>
             </Row>
 

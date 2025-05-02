@@ -1,11 +1,20 @@
 
 import './App.css'
-import AddTask from './AddTask'
+import React, { Suspense,createContext } from 'react'
+
+const LoadingTaskCom =React.lazy(()=>import('./AddTask'));
+export const Details =createContext('');
 function App() {
   return (
     <>
+
       <div className="card">
-        <AddTask />
+      <Details.Provider value={{title:'To-Do List'}}>
+        <Suspense fallback={<><p>Loading</p></>}>
+        <LoadingTaskCom />
+        </Suspense>       
+         </Details.Provider>
+
       </div>
      
     </>
