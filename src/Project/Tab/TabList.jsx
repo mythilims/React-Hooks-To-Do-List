@@ -8,6 +8,7 @@ function TabList() {
   const [activeTab, setActiveTab] = useState('1');
   return (<>
     <Row>
+      <h6>2.𝗛𝗼𝘄 𝘄𝗼𝘂𝗹𝗱 𝘆𝗼𝘂 𝗱𝗲𝘀𝗶𝗴𝗻 𝗮 𝗧𝗮𝗯𝘀 𝗰𝗼𝗺𝗽𝗼𝗻𝗲𝗻𝘁 𝘄𝗶𝘁𝗵 𝗰𝗼𝗻𝘁𝗲𝗻𝘁 𝘀𝘄𝗶𝘁𝗰𝗵𝗶𝗻𝗴</h6>
       <Nav tabs>
         <NavItem>
           <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => setActiveTab('1')}>
