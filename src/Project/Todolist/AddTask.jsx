@@ -1,10 +1,10 @@
-import { useState, useCallback,useContext } from 'react'
+import { useState, useCallback, useContext } from 'react';
 import { Button, Col, Input, Row } from 'reactstrap';
-import ToDoList from "./ToDoList";
 import TotalNoTask from './TotalNoTask';
-import {Details} from './App';
+import ToDoList from './ToDoList';
+import { Details } from '../../App';
 function AddTask() {
-    const  {title} =useContext(Details);
+    const { title } = useContext(Details);
     const [taskName, setTaskName] = useState('');
     const [taskList, setTaskList] = useState([]);
     const addTask = useCallback(() => {
@@ -52,7 +52,7 @@ function AddTask() {
     }, [taskList]);
 
     const deleteTask = useCallback((key) => {
-        let UpdateTask =taskList.filter((_,keys) => keys!==key  );
+        let UpdateTask = taskList.filter((_, keys) => keys !== key);
         setTaskList(UpdateTask);
     }, [taskList]);
     return (
